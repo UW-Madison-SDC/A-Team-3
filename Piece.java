@@ -25,8 +25,9 @@ public class Piece implements Clickable {
         Piece.processing = processing;
     }
 
-    private void set_image(String path){
-        image = 
+    // name of the piece
+    private void set_image(String name){
+        image = processing.loadImage("images" + File.separator + name + ".png");
     }
 
 }
