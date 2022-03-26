@@ -88,4 +88,20 @@ public class Coordinate {
   public boolean getRelativity() {
     return this.isRelative;
   }
+  
+  @Override
+  /**
+   * Checks whether two objects are equal, by overriding the Coordinate method.
+   * 
+   * @param the other object
+   * @return whether the other object equals this object
+   */
+  public boolean equals(Object other) {
+    if(other instanceof Coordinate && this.x == ((Coordinate)(other)).getX() && this.y == ((Coordinate)(other)).getY()) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 }
