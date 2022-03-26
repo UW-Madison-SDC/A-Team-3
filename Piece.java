@@ -56,6 +56,13 @@ public class Piece implements Clickable {
         processing.image(image, coord.getX(), coord.getY());
     }
 
+    /**
+     * will check it is valid move or not
+     * 
+     * @param card chosen card
+     * @param coord chosen coord
+     * @return true if valid false if not valid
+     */
     public boolean move(Card card, Coordinate coord){
 
         return true;
