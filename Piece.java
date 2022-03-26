@@ -1,3 +1,4 @@
+import java.io.File;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -9,7 +10,7 @@ public class Piece implements Clickable {
     // coordnate of piece
     private Coordinate coord;
 
-    private int color; // 0 --> red 1 --> blue
+    private int color; // 0 --> red 1 --> yellow
 
     private PImage image; // piece image
 
@@ -50,7 +51,7 @@ public class Piece implements Clickable {
 
     // draw method
     public void draw() {
-        processing.image(image, x, y);
+        processing.image(image, coord.getX(), coord.getY());
     }
 
 }

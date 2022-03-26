@@ -25,3 +25,6 @@
 
 * Driver
 
+#### About the game
+
+* Red vs Yellow
