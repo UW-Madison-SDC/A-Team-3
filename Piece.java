@@ -22,14 +22,9 @@ public class Piece implements Clickable {
      * @param image_path  image name
      */
     Piece(int x_input, int y_input, int color_input, String image_path) {
-        coord = new Coordinate(x_input,y_input);
+        coord = new Coordinate(x_input, y_input);
         color = color_input;
         set_image(image_path);
-    }
-    
-    // call this in the setup method in Driver
-    public static void setProcessing(Driver processing) {
-        Piece.processing = processing;
     }
 
     // name of the piece
@@ -37,15 +32,25 @@ public class Piece implements Clickable {
         image = processing.loadImage("images" + File.separator + name + ".png");
     }
 
+    // call this in the setup method in Driver
+    public static void setProcessing(Driver processing) {
+        Piece.processing = processing;
+    }
+
     // set coord
-    public void set_coord(int x_input, int y_input){
+    public void set_coord(int x_input, int y_input) {
         coord.setX(x_input);
         coord.setY(y_input);
     }
 
     // get coord
-    public Coordinate get_coord(){
+    public Coordinate get_coord() {
         return coord;
+    }
+
+    // draw method
+    public void draw() {
+        processing.image(image, x, y);
     }
 
 }
