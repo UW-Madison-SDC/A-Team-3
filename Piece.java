@@ -30,7 +30,7 @@ public class Piece implements Clickable {
 
     // name of the piece
     private void set_image(String name) {
-        image = processing.loadImage("images" + File.separator + name + ".png");
+        image = processing.loadImage("assets" + File.separator + "Piece" + name + ".png");
     }
 
     // call this in the setup method in Driver
@@ -52,6 +52,11 @@ public class Piece implements Clickable {
     // draw method
     public void draw() {
         processing.image(image, coord.getX(), coord.getY());
+    }
+
+    public boolean move(Card card, Coordinate coord){
+
+        return true;
     }
 
 }
