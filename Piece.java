@@ -8,12 +8,14 @@ public class Piece implements Clickable {
     protected static Driver processing;
 
     // coordnate of piece
-    private Coordinate coord;
+    protected Coordinate coord;
 
-    private int color; // 0 --> red 1 --> yellow
+    protected int color; // 0 --> yellow 1 --> red
 
     private PImage image; // piece image
 
+    protected final Coordinate yellow_win = new Coordinate(-4,0);
+    protected final Coordinate red_win = new Coordinate(4,0);
     /**
      * constructor
      * 
