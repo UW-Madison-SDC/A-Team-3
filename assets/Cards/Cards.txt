@@ -1,0 +1,15 @@
+- Humvee
+- Jeep
+- Artillery Truck
+- Tank
+- Fighter Jet
+- Stealth Bomber
+- Cargo Plane
+- Train
+- Attack Helicopter
+- Medical Helicopter
+- Military Motorcycle
+- Patrol Boat
+- Cruiser
+- Destroyer
+- Carrier
