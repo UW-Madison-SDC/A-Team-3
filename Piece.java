@@ -10,7 +10,7 @@ public class Piece implements Clickable {
     // coordnate of piece
     protected Coordinate coord;
 
-    protected int color; // 0 --> yellow 1 --> red
+    protected int color; // 0 --> green 1 --> red
 
     private PImage image; // piece image
 

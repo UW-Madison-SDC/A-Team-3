@@ -9,4 +9,7 @@ import java.util.ArrayList;
  */
 public class Card {
     ArrayList<Coordinate> coords = new ArrayList<>();
+
+    Coordinate position;
+    
 }

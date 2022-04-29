@@ -8,7 +8,7 @@
 | Member     | [amohanty03](https://github.com/amohanty03)     |
 | Member     | [DaCooGa](https://github.com/DaCooGa)           |
 | Member     | [nickroh](https://github.com/nickroh)           |
-| Member     | [Saanvi Malhotra](https://github.com/malhotrasaanvi)  |
+| Member     | [Saanvi Malhotra](https://github.com/malhotrasaanvi)|
 
 ### Project
 
@@ -28,3 +28,6 @@
 #### About the game
 
 * Red vs Yellow
+
+
+#### NOTES
