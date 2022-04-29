@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * 
  * 
@@ -6,5 +8,5 @@
  *  -Created Card.java
  */
 public class Card {
-
+    ArrayList<Coordinate> coords = new ArrayList<>();
 }

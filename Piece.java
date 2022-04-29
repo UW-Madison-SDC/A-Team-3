@@ -65,7 +65,13 @@ public class Piece implements Clickable {
      */
     public boolean move(Card card, Coordinate coord){
 
-        return true;
+        for(int i=0;i<card.coords.size();i++){
+            if(coord.equals(card.coords.get(i))){
+                return true;
+            }
+        }
+
+        return false;;
     }
 
 }
