@@ -5,7 +5,7 @@ public class General extends Piece{
 
     // method that checks General piece is in the opposite middle position
     public boolean check(){
-        if(color == 0){ // 0 is for yellow
+        if(color == 0){ // 0 is for General
             if(coord.equals(yellow_win)){
                 return true;
             }
