@@ -14,11 +14,12 @@ public class Card {
   int position; // 0 - redQueue[0]; 1 - redCards[0]; 2 - redCards[1]; 3 - greenQueue[0]; 4 - greenCards[0]; 5 - greenCards[1]
   
   static private PApplet processing;
-  PApplet Image;
+  PApplet image;
   
-  public Card(int x) {
+  public Card(int x, PApplet processing) {
+    this.processing = processing;
     if(x == 0) {
-      processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Artillery Truck.png");
+      this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Artillery Truck.png");
       this.title = "Artillery Truck";
       
       this.canMoveTo.add(new Coordinate(0,1));
@@ -35,7 +36,7 @@ public class Card {
     }
     
     if(x == 1) {
-      processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Attack Helicopter.png");
+      this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Attack Helicopter.png");
       this.title = "Attack Helicopter";
       
       this.canMoveTo.add(new Coordinate(1,-3));
@@ -50,7 +51,7 @@ public class Card {
     }
     
     if(x == 2) {
-      processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Attack Helicopter.png");
+      this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Attack Helicopter.png");
       this.title = "Cargo Plane";
       
       this.canMoveTo.add(new Coordinate(1,1));
@@ -66,7 +67,7 @@ public class Card {
     
     
     if(x == 3) {
-      processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Carrier.png");
+      this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Carrier.png");
       this.title = "Carrier";
       
       this.canMoveTo.add(new Coordinate(0,0));
@@ -76,7 +77,7 @@ public class Card {
     }
     
     if(x == 4) {
-      processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Cruiser.png");
+      this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Cruiser.png");
       this.title = "Cruiser";
       
       this.canMoveTo.add(new Coordinate(0,-2));
@@ -95,7 +96,7 @@ public class Card {
     }
     
     if(x == 5) {
-      processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Destroyer.png");
+      this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Destroyer.png");
       this.title = "Destroyer";
       
       this.canMoveTo.add(new Coordinate(0,1));
@@ -110,7 +111,7 @@ public class Card {
     }
     
     if(x == 6) {
-      processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Fighter Jet.png");
+      this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Fighter Jet.png");
       this.title = "Fighter Jet";
       
       this.canMoveTo.add(new Coordinate(-4,4));
@@ -123,7 +124,7 @@ public class Card {
     }
     
     if(x == 7) {
-      processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Humvee.png");
+      this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Humvee.png");
       this.title = "Humvee";
       
       this.canMoveTo.add(new Coordinate(0,1));
@@ -138,7 +139,7 @@ public class Card {
     }
     
     if(x == 8) {
-      processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Jeep.png");
+      this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Jeep.png");
       this.title = "Jeep";
       
       this.canMoveTo.add(new Coordinate(1,0));
@@ -151,7 +152,7 @@ public class Card {
     }
     
     if(x == 9) {
-      processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Medical Helicopter.png");
+      this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Medical Helicopter.png");
       this.title = "Medical Helicopter";
       
       this.canMoveTo.add(new Coordinate(0,1));
@@ -166,7 +167,7 @@ public class Card {
     }
     
     if(x == 10) {
-      processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Military Motorcycle.png");
+      this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Military Motorcycle.png");
       this.title = "Military Motorcycle";
       
       this.canMoveTo.add(new Coordinate(0,1));
@@ -181,7 +182,7 @@ public class Card {
     }
     
     if(x == 11) {
-      processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Patrol Boat.png");
+      this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Patrol Boat.png");
       this.title = "Patrol Boat";
       
       this.canMoveTo.add(new Coordinate(2,2));
@@ -196,7 +197,7 @@ public class Card {
     }
     
     if(x == 12) {
-      processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Stealth Bomber.png");
+      this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Stealth Bomber.png");
       this.title = "Stealth Bomber";
       
       this.canMoveTo.add(new Coordinate(0,-4));
@@ -217,7 +218,7 @@ public class Card {
     }
     
     if(x == 13) {
-      processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Tank.png");
+      this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Tank.png");
       this.title = "Tank";
       
       this.canMoveTo.add(new Coordinate(1,0));
@@ -230,7 +231,7 @@ public class Card {
     }
     
     if(x == 14) {
-      processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Patrol Boat.png");
+      this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Patrol Boat.png");
       this.title = "Patrol Boat";
       
       this.canMoveTo.add(new Coordinate(1,0));
