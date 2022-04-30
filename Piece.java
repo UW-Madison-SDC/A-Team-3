@@ -14,6 +14,8 @@ public class Piece implements Clickable {
 
     private PImage image; // piece image
 
+    private boolean selected; 
+
     protected final Coordinate yellow_win = new Coordinate(-4,0);
     protected final Coordinate red_win = new Coordinate(4,0);
     /**
@@ -27,7 +29,16 @@ public class Piece implements Clickable {
     Piece(int x_input, int y_input, int color_input, String image_path) {
         coord = new Coordinate(x_input, y_input);
         color = color_input;
+        selected =false;
         set_image(image_path);
+    }
+
+    public void select(){
+        selected = true;
+    }
+
+    public void unselect(){
+        selected = false;
     }
 
     // name of the piece
@@ -65,8 +76,8 @@ public class Piece implements Clickable {
      */
     public boolean move(Card card, Coordinate coord){
 
-        for(int i=0;i<card.coords.size();i++){
-            if(coord.equals(card.coords.get(i))){
+        for(int i=0;i<card.canMoveTo.size();i++){
+            if(coord.equals(card.canMoveTo.get(i))){
                 return true;
             }
         }
