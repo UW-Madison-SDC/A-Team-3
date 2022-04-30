@@ -246,12 +246,20 @@ public class Card {
     }
   }
   
-  public void setPosession(int x) {
+  public void setPossession(int x) {
     this.possession = x;
+  }
+  
+  public int getPossession() {
+    return this.possession;
   }
   
   public void setPosition(int x) {
     this.position = x;
+  }
+  
+  public int getPosition() {
+    return this.getPosition();
   }
   
   public void select() {
