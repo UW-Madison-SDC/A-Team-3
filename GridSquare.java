@@ -7,7 +7,7 @@ public class GridSquare {
   public boolean selected;
   static private PApplet processing;
   private PImage image; // piece image
-  
+  private PImage clicked_image; // clicked image
   
   public GridSquare(int x, int y, PApplet processing) {
     this.processing = processing;

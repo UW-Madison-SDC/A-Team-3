@@ -13,6 +13,7 @@ public class Piece {
     protected int color; // 0 --> green 1 --> red
 
     private PImage image; // piece image
+    private PImage clicked_image; // clicked image
 
     private boolean selected; 
 

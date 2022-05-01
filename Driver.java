@@ -135,7 +135,7 @@ public class Driver extends PApplet{
 
     playerTurn = 'r';
     // Driver.processing = processing;
-
+ 
     images = new PImage[CARD_IMAGES_NAMES.length];
     randGen = new Random();
 
@@ -372,7 +372,9 @@ public class Driver extends PApplet{
     int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
 
     if (playerTurn == 'r') {
+      System.out.println("RED TURN");
       if (step == 0) {
+        System.out.println("RED turn to choose card");
         for (int i = 0; i < cards.length; i++) {
           if (isMouseOverCard(cards[i])) {
             selectedCard = cards[i];

@@ -16,7 +16,8 @@ public class Card {
   int position; // 0 - redQueue[0]; 1 - redCards[0]; 2 - redCards[1]; 3 - greenQueue[0]; 4 - greenCards[0]; 5 - greenCards[1]
   
   static private PApplet processing;
-  PImage image;
+  private PImage image;
+  private PImage clicked_image; // clicked image
   
   public Card(int x, PApplet processing) {
     this.processing = processing;
