@@ -104,4 +104,9 @@ public class Coordinate {
       return false;
     }
   }
+
+  public String toString(){
+    String show = "( "+Integer.toString(x) + ", " +Integer.toString(y)+" )";
+    return show;
+  }
 }

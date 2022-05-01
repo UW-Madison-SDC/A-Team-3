@@ -40,4 +40,9 @@ public class GridSquare {
   public PImage getImage(){
       return image;
   }
+
+  @Override
+  public String toString(){
+    return "Grid at : "+coord.toString()+" / ";
+  }
 }
