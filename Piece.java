@@ -5,7 +5,7 @@ import processing.core.PImage;
 public class Piece implements Clickable {
 
     // PApplet stuff
-    protected static Driver processing;
+    static private PApplet processing;
 
     // coordnate of piece
     protected Coordinate coord;
@@ -26,7 +26,8 @@ public class Piece implements Clickable {
      * @param color_input set color
      * @param image_path  image name
      */
-    Piece(int x_input, int y_input, int color_input, String image_path) {
+    Piece(int x_input, int y_input, int color_input, String image_path, PApplet processing) {
+        this.processing = processing;
         coord = new Coordinate(x_input, y_input);
         color = color_input;
         selected =false;
@@ -64,7 +65,7 @@ public class Piece implements Clickable {
 
     // draw method
     public void draw() {
-        processing.image(image, coord.getX(), coord.getY());
+        this.processing.image(image, coord.getX(), coord.getY());
     }
 
     /**
