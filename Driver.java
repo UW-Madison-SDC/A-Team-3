@@ -130,18 +130,18 @@ public class Driver {
     images = new PImage[CARD_IMAGES_NAMES.length];
     randGen = new Random();
 
-    greenGeneral = new Piece(571, 300, 0, "GreenGeneral");
+    greenGeneral = new General(571, 300, 0, "GreenGeneral", processing);
     greenPieces.add(greenGeneral);
-    redGeneral = new Piece(229, 300, 1, "RedGeneral");
+    redGeneral = new General(229, 300, 1, "RedGeneral", processing);
     redPieces.add(redGeneral);
 
     for (int i = 0; i < 4; ++i) {
-      redRecruits[i] = new Piece(229, 414 - (57*i), 1, "RedRecruit");
+      redRecruits[i] = new Piece(229, 414 - (57*i), 1, "RedRecruit", processing);
       redPieces.add(redRecruits[i]);
     }
 
     for (int i = 0; i < 4; ++i) {
-      greenRecruits[i] = new Piece(571, 414 - (57*i), 0, "GreenRecruit");
+      greenRecruits[i] = new Piece(571, 414 - (57*i), 0, "GreenRecruit", processing);
       greenPieces.add(greenRecruits[i]);
     }
 
