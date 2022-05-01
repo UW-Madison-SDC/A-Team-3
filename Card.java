@@ -310,5 +310,8 @@ public class Card {
       return image;
   }
   
+  public String toString(){
+      return "Card at : "+  thisCardsCoordinate.toString()+" / ";
+  }
   
 }
