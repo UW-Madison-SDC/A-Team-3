@@ -24,14 +24,14 @@ public class Card {
       this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Artillery Truck.png");
       this.title = "Artillery Truck";
       
-      this.canMoveTo.add(new Coordinate(0,57));
-      this.canMoveTo.add(new Coordinate(-57,57));
-      this.canMoveTo.add(new Coordinate(57,57));
+      this.canMoveTo.add(new Coordinate(0,-57));
+      this.canMoveTo.add(new Coordinate(-57,-57));
+      this.canMoveTo.add(new Coordinate(57,-57));
       this.canMoveTo.add(new Coordinate(-57,0));
       this.canMoveTo.add(new Coordinate(57,0));
-      this.canMoveTo.add(new Coordinate(-57,-57));
-      this.canMoveTo.add(new Coordinate(-57,0));
       this.canMoveTo.add(new Coordinate(-57,57));
+      this.canMoveTo.add(new Coordinate(-57,0));
+      this.canMoveTo.add(new Coordinate(-57,-57));
       
       this.possession = 4;
       this.isSelected = false;   
@@ -41,12 +41,12 @@ public class Card {
       this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Attack Helicopter.png");
       this.title = "Attack Helicopter";
       
-      this.canMoveTo.add(new Coordinate(57,-171));
       this.canMoveTo.add(new Coordinate(57,171));
-      this.canMoveTo.add(new Coordinate(0,-114));
+      this.canMoveTo.add(new Coordinate(57,-171));
       this.canMoveTo.add(new Coordinate(0,114));
-      this.canMoveTo.add(new Coordinate(-57,-171));
+      this.canMoveTo.add(new Coordinate(0,-114));
       this.canMoveTo.add(new Coordinate(-57,171));
+      this.canMoveTo.add(new Coordinate(-57,-171));
       
       this.possession = 4;
       this.isSelected = false;   
@@ -56,12 +56,12 @@ public class Card {
       this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Attack Helicopter.png");
       this.title = "Cargo Plane";
       
-      this.canMoveTo.add(new Coordinate(57,57));
-      this.canMoveTo.add(new Coordinate(114,114));
-      this.canMoveTo.add(new Coordinate(114,171));
-      this.canMoveTo.add(new Coordinate(-57,-57));
-      this.canMoveTo.add(new Coordinate(-114,-114));
-      this.canMoveTo.add(new Coordinate(-114,-171));
+      this.canMoveTo.add(new Coordinate(57,-57));
+      this.canMoveTo.add(new Coordinate(114,-114));
+      this.canMoveTo.add(new Coordinate(114,-171));
+      this.canMoveTo.add(new Coordinate(-57,57));
+      this.canMoveTo.add(new Coordinate(-114,114));
+      this.canMoveTo.add(new Coordinate(-114,171));
       
       this.possession = 4;
       this.isSelected = false;   
@@ -82,16 +82,16 @@ public class Card {
       this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Cruiser.png");
       this.title = "Cruiser";
       
-      this.canMoveTo.add(new Coordinate(0,-114));
       this.canMoveTo.add(new Coordinate(0,114));
-      this.canMoveTo.add(new Coordinate(57,-57));
+      this.canMoveTo.add(new Coordinate(0,-114));
       this.canMoveTo.add(new Coordinate(57,57));
-      this.canMoveTo.add(new Coordinate(114,-114));
+      this.canMoveTo.add(new Coordinate(57,-57));
       this.canMoveTo.add(new Coordinate(114,114));
-      this.canMoveTo.add(new Coordinate(-57,-57));
+      this.canMoveTo.add(new Coordinate(114,-114));
       this.canMoveTo.add(new Coordinate(-57,57));
-      this.canMoveTo.add(new Coordinate(-114,-114));
+      this.canMoveTo.add(new Coordinate(-57,-57));
       this.canMoveTo.add(new Coordinate(-114,114));
+      this.canMoveTo.add(new Coordinate(-114,-114));
       
       this.possession = 4;
       this.isSelected = false;   
@@ -101,12 +101,12 @@ public class Card {
       this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Destroyer.png");
       this.title = "Destroyer";
       
-      this.canMoveTo.add(new Coordinate(0,57));
-      this.canMoveTo.add(new Coordinate(0,114));
-      this.canMoveTo.add(new Coordinate(0,171));
       this.canMoveTo.add(new Coordinate(0,-57));
       this.canMoveTo.add(new Coordinate(0,-114));
       this.canMoveTo.add(new Coordinate(0,-171));
+      this.canMoveTo.add(new Coordinate(0,57));
+      this.canMoveTo.add(new Coordinate(0,114));
+      this.canMoveTo.add(new Coordinate(0,171));
       
       this.possession = 4;
       this.isSelected = false;   
@@ -116,10 +116,10 @@ public class Card {
       this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Fighter Jet.png");
       this.title = "Fighter Jet";
       
-      this.canMoveTo.add(new Coordinate(-228,228));
       this.canMoveTo.add(new Coordinate(-228,-228));
-      this.canMoveTo.add(new Coordinate(228,228));
+      this.canMoveTo.add(new Coordinate(-228,228));
       this.canMoveTo.add(new Coordinate(228,-228));
+      this.canMoveTo.add(new Coordinate(228,228));
 
       this.possession = 4;
       this.isSelected = false;   
@@ -129,12 +129,12 @@ public class Card {
       this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Humvee.png");
       this.title = "Humvee";
       
-      this.canMoveTo.add(new Coordinate(0,57));
-      this.canMoveTo.add(new Coordinate(57,57));
-      this.canMoveTo.add(new Coordinate(-57,57));
       this.canMoveTo.add(new Coordinate(0,-57));
       this.canMoveTo.add(new Coordinate(57,-57));
       this.canMoveTo.add(new Coordinate(-57,-57));
+      this.canMoveTo.add(new Coordinate(0,57));
+      this.canMoveTo.add(new Coordinate(57,57));
+      this.canMoveTo.add(new Coordinate(-57,57));
       
       this.possession = 4;
       this.isSelected = false;   
@@ -146,8 +146,8 @@ public class Card {
       
       this.canMoveTo.add(new Coordinate(57,0));
       this.canMoveTo.add(new Coordinate(-57,0));
-      this.canMoveTo.add(new Coordinate(0,57));
       this.canMoveTo.add(new Coordinate(0,-57));
+      this.canMoveTo.add(new Coordinate(0,57));
 
       this.possession = 4;
       this.isSelected = false;   
@@ -157,8 +157,8 @@ public class Card {
       this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Medical Helicopter.png");
       this.title = "Medical Helicopter";
       
-      this.canMoveTo.add(new Coordinate(0,57));
       this.canMoveTo.add(new Coordinate(0,-57));
+      this.canMoveTo.add(new Coordinate(0,57));
       this.canMoveTo.add(new Coordinate(114,0));
       this.canMoveTo.add(new Coordinate(171,0));
       this.canMoveTo.add(new Coordinate(-114,0));
@@ -172,10 +172,10 @@ public class Card {
       this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Military Motorcycle.png");
       this.title = "Military Motorcycle";
       
-      this.canMoveTo.add(new Coordinate(0,57));
-      this.canMoveTo.add(new Coordinate(0,114));
       this.canMoveTo.add(new Coordinate(0,-57));
       this.canMoveTo.add(new Coordinate(0,-114));
+      this.canMoveTo.add(new Coordinate(0,57));
+      this.canMoveTo.add(new Coordinate(0,114));
       this.canMoveTo.add(new Coordinate(57,0));
       this.canMoveTo.add(new Coordinate(-57,0));
       
@@ -187,10 +187,10 @@ public class Card {
       this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Patrol Boat.png");
       this.title = "Patrol Boat";
       
-      this.canMoveTo.add(new Coordinate(114,114));
-      this.canMoveTo.add(new Coordinate(-114,114));
       this.canMoveTo.add(new Coordinate(114,-114));
       this.canMoveTo.add(new Coordinate(-114,-114));
+      this.canMoveTo.add(new Coordinate(114,114));
+      this.canMoveTo.add(new Coordinate(-114,114));
       this.canMoveTo.add(new Coordinate(114,0));
       this.canMoveTo.add(new Coordinate(-114,0));
       
@@ -202,18 +202,18 @@ public class Card {
       this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Stealth Bomber.png");
       this.title = "Stealth Bomber";
       
-      this.canMoveTo.add(new Coordinate(0,-228));
-      this.canMoveTo.add(new Coordinate(0,-171));
-      this.canMoveTo.add(new Coordinate(0,171));
       this.canMoveTo.add(new Coordinate(0,228));
-      this.canMoveTo.add(new Coordinate(57,-228));
-      this.canMoveTo.add(new Coordinate(57,-171));
-      this.canMoveTo.add(new Coordinate(57,171));
+      this.canMoveTo.add(new Coordinate(0,171));
+      this.canMoveTo.add(new Coordinate(0,-171));
+      this.canMoveTo.add(new Coordinate(0,-228));
       this.canMoveTo.add(new Coordinate(57,228));
-      this.canMoveTo.add(new Coordinate(-57,-228));
-      this.canMoveTo.add(new Coordinate(-57,-171));
-      this.canMoveTo.add(new Coordinate(-57,171));
+      this.canMoveTo.add(new Coordinate(57,171));
+      this.canMoveTo.add(new Coordinate(57,-171));
+      this.canMoveTo.add(new Coordinate(57,-228));
       this.canMoveTo.add(new Coordinate(-57,228));
+      this.canMoveTo.add(new Coordinate(-57,171));
+      this.canMoveTo.add(new Coordinate(-57,-171));
+      this.canMoveTo.add(new Coordinate(-57,-228));
       
       this.possession = 4;
       this.isSelected = false;   
@@ -225,8 +225,8 @@ public class Card {
       
       this.canMoveTo.add(new Coordinate(57,0));
       this.canMoveTo.add(new Coordinate(-57,0));
-      this.canMoveTo.add(new Coordinate(0,114));
       this.canMoveTo.add(new Coordinate(0,-114));
+      this.canMoveTo.add(new Coordinate(0,114));
 
       this.possession = 4;
       this.isSelected = false;   
@@ -237,11 +237,11 @@ public class Card {
       this.title = "Patrol Boat";
       
       this.canMoveTo.add(new Coordinate(57,0));
-      this.canMoveTo.add(new Coordinate(57,-57));
-      this.canMoveTo.add(new Coordinate(57,-114));
+      this.canMoveTo.add(new Coordinate(57,57));
+      this.canMoveTo.add(new Coordinate(57,114));
       this.canMoveTo.add(new Coordinate(-57,0));
-      this.canMoveTo.add(new Coordinate(-57,57));
-      this.canMoveTo.add(new Coordinate(-57,114));
+      this.canMoveTo.add(new Coordinate(-57,-57));
+      this.canMoveTo.add(new Coordinate(-57,-114));
       
       this.possession = 4;
       this.isSelected = false;   
