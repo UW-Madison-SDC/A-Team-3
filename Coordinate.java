@@ -106,7 +106,7 @@ public class Coordinate {
   }
 
   public String toString(){
-    String show = "( "+Integer.toString(x) + ", " +Integer.toString(y)+" )";
+    String show = "( "+Integer.toString(Utility.converter_game(x)-4) + ", " +Integer.toString(Utility.converter_game(y)-2)+" )";
     return show;
   }
 }

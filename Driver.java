@@ -392,6 +392,7 @@ int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
             selectedCard = redCards.get(i);
             // check validity
             if (redCards.contains(selectedCard)) {
+              System.out.println(selectedCard.toString());
               redCards.get(i).select();
               step++;
               break;
@@ -401,9 +402,10 @@ int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
       }
       else if (step == 1) {
         for (int i = 0; i < redPieces.size(); i++) {
-      
+          
           if (isMouseOverPiece(redPieces.get(i))) {
             System.out.println("Red Piece is Clicked");
+            System.out.println(redPieces.get(i).toString());
             selectedPiece = redPieces.get(i);
             // check validity
             selectedPiece.select();
@@ -418,7 +420,7 @@ int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
 
             selectedGrid = grids[i];
             selectedGrid.select();
-
+            System.out.println(selectedGrid.toString());
             coordXGrid = selectedGrid.getX();
             coordYGrid = selectedGrid.getY();
             coordXPiece = selectedPiece.getX();
@@ -427,19 +429,9 @@ int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
             coordX = coordXGrid - coordXPiece;
             coordY = coordYGrid - coordYPiece;
             move = new Coordinate(coordX, coordY, true);
-            System.out.println("coordXGrid: " + coordXGrid);
-            System.out.println("coordYGrid: " + coordYGrid);
-            System.out.println("coordXPiece: " + coordXPiece);
-            System.out.println("coordYPiece: " + coordYPiece);
-            System.out.println("coordX: " + coordX);
-            System.out.println("coordY: " + coordY);
-            System.out.println("canmoveto: " + selectedCard.canMoveTo);
+
             for (int j = 0; j < selectedCard.canMoveTo.size(); ++j) {
-              System.out.println("");
-              System.out.println("selectedCard.canMoveTo.get(j).getX(): " + selectedCard.canMoveTo.get(j).getX());
-              System.out.println("coordX: " + coordX);
-              System.out.println("selectedCard.canMoveTo.get(j).getY()" + selectedCard.canMoveTo.get(j).getY());
-              System.out.println("coordY:" + coordY);
+      
 ;              if (selectedCard.canMoveTo.get(j).getX() == coordX && selectedCard.canMoveTo.get(j).getY() == coordY) {
                 selectedPiece.set_coord(coordXGrid, coordYGrid);
                 // remove from red set, shift to green queue, add red queue card to set

@@ -178,7 +178,7 @@ public class Card {
       this.canMoveTo.add(new Coordinate(57,0));
       this.canMoveTo.add(new Coordinate(114,0));
       this.canMoveTo.add(new Coordinate(0,57));
-      this.canMoveTo.add(new Coordinate(0.-57));
+      this.canMoveTo.add(new Coordinate(0,-57));
       
       this.possession = 4;
       this.isSelected = false;   
@@ -262,7 +262,7 @@ public class Card {
   }
   
   public int getPosition() {
-    return this.getPosition();
+    return position;
   }
   
   public void select() {
@@ -311,7 +311,7 @@ public class Card {
   }
   
   public String toString(){
-      return "Card at : "+  thisCardsCoordinate.toString()+" / ";
+      return "Card at : "+  thisCardsCoordinate.toString()+" and "+ title+" / ";
   }
   
 }

@@ -89,13 +89,32 @@ public class Piece {
      */
     public boolean move(Card card, Coordinate coord){
 
+        Coordinate compare_coord = new Coordinate();
+        
+        int input_x = coord.getX();
+        int input_y = coord.getY();
+
+        compare_coord.setX(this.coord.getX()-input_x);
+        compare_coord.setY(this.coord.getY()-input_y);
+
         for(int i=0;i<card.canMoveTo.size();i++){
-            if(coord.equals(card.canMoveTo.get(i))){
-                return true;
+            if(compare_coord.equals(card.canMoveTo.get(i))){
+                boolean a = Utility.converter_game(coord.getX())-4>=0;
+                boolean b =  Utility.converter_game(coord.getX())-4<= 6;
+                boolean c = Utility.converter_game(coord.getY())-2>=0;
+                boolean d = Utility.converter_game(coord.getY())-2<= 6;
+                if(a&& b && c && d ){
+                    return true;
+                }
+                
             }
         }
 
         return false;
+    }
+
+    public String toString(){
+        return "normal piece at "+coord.toString();
     }
 
 }
