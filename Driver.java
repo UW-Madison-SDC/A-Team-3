@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.Random;
 
 
-public class Driver {
+public class Driver extends PApplet{
 
   // Congratulations message
 
@@ -34,17 +34,17 @@ public class Driver {
 //                  {170, 478}, {324, 478}, {478, 478}, {632, 478}};
 
   private final static float[][] GRID_COORDINATES = initializeCoords();
-  private final static float[][] PIECE_COORDINATES =
-          new float[][]{{229, 357},
-                  {229, 414},
-                  {229, 300},
-                  {229, 243},
-                  {229, 186},
-                  {571, 357},
-                  {571, 414},
-                  {571, 300},
-                  {571, 243},
-                  {571, 186}};
+  private final static int[][] PIECE_COORDINATES =
+          new int[][]{{200, 157},
+                  {200, 214},
+                  {200, 328},
+                  {200, 385},
+                  {542, 157},
+                  {542, 214},
+                  {542, 328},
+                  {542, 385},
+                  {200, 271},
+                  {542, 271}};
   // Array that stores the card images filenames
 
   private final static String[] CARD_IMAGES_NAMES = new String[]{"Artillery Truck.png", "Attack Helicopter.png",
@@ -57,19 +57,19 @@ public class Driver {
 
   // the graphic display window
 
-  private static Card[] cards; // one dimensional array of cards
-  private static Card[] chosenDeck; // one dimensional array of chosen cards
+  private static Card[] cards = new Card[15]; // one dimensional array of cards
+  private static Card[] chosenDeck = new Card[5]; // one dimensional array of chosen cards
 
-  private static Piece[] pieces;
-  private static Piece[] redRecruits;
-  private static Piece[] greenRecruits;
+  private static Piece[] pieces = new Piece[10];
+  private static Piece[] redRecruits = new Piece[4];
+  private static Piece[] greenRecruits = new Piece[4];
   private static Piece redGeneral;
   private static Piece greenGeneral;
   private static ArrayList<Piece> redPieces = new ArrayList<Piece>();
   private static ArrayList<Piece> greenPieces = new ArrayList<Piece>();
 
 
-  private static Grid[] grids;
+  private static GridSquare[] grids = new GridSquare[49];
   private static PImage[] images; // array of images of the different cards
 
   private static Card selectedCard1; // First selected card
@@ -99,59 +99,68 @@ public class Driver {
     float[][] GRID_COORDINATES = new float[49][2];
 
     for (int i = 0; i < 49; i++) {
-      GRID_COORDINATES[i][0] = 400 + (57 * (i % 7));
+      GRID_COORDINATES[i][0] = 200 + (57 * (i % 7));
       if (i < 7) {
-        GRID_COORDINATES[i][1] = 300 + (57 * 0);
+        GRID_COORDINATES[i][1] = 100 + (57 * 0);
       } else if (i < 14) {
-        GRID_COORDINATES[i][1] = 300 + (57 * 1);
+        GRID_COORDINATES[i][1] = 100 + (57 * 1);
       } else if (i < 21) {
-        GRID_COORDINATES[i][1] = 300 + (57 * 2);
+        GRID_COORDINATES[i][1] = 100 + (57 * 2);
       } else if (i < 28) {
-        GRID_COORDINATES[i][1] = 300 + (57 * 3);
+        GRID_COORDINATES[i][1] = 100 + (57 * 3);
       } else if (i < 35) {
-        GRID_COORDINATES[i][1] = 300 + (57 * 4);
+        GRID_COORDINATES[i][1] = 100 + (57 * 4);
       } else if (i < 42) {
-        GRID_COORDINATES[i][1] = 300 + (57 * 5);
+        GRID_COORDINATES[i][1] = 100 + (57 * 5);
       } else if (i < 49) {
-        GRID_COORDINATES[i][1] = 300 + (57 * 6);
+        GRID_COORDINATES[i][1] = 100 + (57 * 6);
       }
     }
     return GRID_COORDINATES;
   }
 
   /**
+   * Sets the size of the application display window
+   */
+  @Override
+  public void settings() {
+    size(800, 600);
+  }
+
+  /**
    * Defines the initial environment properties of this game as the program starts
    */
+  @Override
+  public void setup() {
 
-  public static void setup(PApplet processing) {
-
-    Driver.processing = processing;
+    playerTurn = 'r';
+    // Driver.processing = processing;
 
     images = new PImage[CARD_IMAGES_NAMES.length];
     randGen = new Random();
 
-    greenGeneral = new General(571, 300, 0, "GreenGeneral", processing);
+    greenGeneral = new General(PIECE_COORDINATES[9][0], PIECE_COORDINATES[9][1], 0, "GreenGeneral", this);
     greenPieces.add(greenGeneral);
-    redGeneral = new General(229, 300, 1, "RedGeneral", processing);
+    redGeneral = new General(PIECE_COORDINATES[8][0], PIECE_COORDINATES[8][1], 1, "RedGeneral", this);
     redPieces.add(redGeneral);
 
     for (int i = 0; i < 4; ++i) {
-      redRecruits[i] = new Piece(229, 414 - (57*i), 1, "RedRecruit", processing);
+      redRecruits[i] = new Piece(PIECE_COORDINATES[i][0], PIECE_COORDINATES[i][1], 1, "RedRecruit", this);
       redPieces.add(redRecruits[i]);
     }
 
     for (int i = 0; i < 4; ++i) {
-      greenRecruits[i] = new Piece(571, 414 - (57*i), 0, "GreenRecruit", processing);
+      greenRecruits[i] = new Piece(PIECE_COORDINATES[i+4][0], PIECE_COORDINATES[i+4][1], 0, "GreenRecruit", this);
       greenPieces.add(greenRecruits[i]);
     }
 
-
+ 
     for (int i = 0; i < 15; ++i) {
 
 //      images[i] = processing.loadImage("images" + File.separator + CARD_IMAGES_NAMES[i]);
 //
 //      processing.image(images[i], processing.width / 2, processing.height / 2);
-      cards[i] = new Card(i, processing);
+      cards[i] = new Card(i, this);
 
     }
     ArrayList<Integer> list = new ArrayList<>();
@@ -160,11 +169,18 @@ public class Driver {
     }
     Collections.shuffle(list);
     for (int i = 0; i < 5; i++) {
-      chosenDeck[i] = new Card(list.get(i), processing);
+      chosenDeck[i] = new Card(list.get(i), this);
       chosenDeck[i].setPosition(i);
     }
 
-    startNewGame();
+    for(int i =0 ; i< 49;i++){
+      int x = (int)GRID_COORDINATES[i][0];
+      int y = (int)GRID_COORDINATES[i][1];
+      grids[i] = new GridSquare(x, y, this);
+    }
+
+
+    //startNewGame();
   }
 
 
@@ -172,89 +188,91 @@ public class Driver {
    * Initializes the Game
    */
 
-  public static void startNewGame() {
+  // public static void startNewGame() {
 
-    selectedCard1 = null;
+  //   selectedCard1 = null;
 
-    selectedCard2 = null;
+  //   selectedCard2 = null;
 
-    matchedCardsCount = 0;
+  //   matchedCardsCount = 0;
 
-    winner = false;
+  //   winner = false;
 
-    message = "";
+  //   message = "";
 
-    cards = new Card[CARDS_COORDINATES.length];
+  //   cards = new Card[15];
 
-    int[] mixedUp = Utility.shuffleCards(cards.length);
+  //   int[] mixedUp = Utility.shuffleCards(cards.length);
 
-    for (int i = 0; i < cards.length; ++i) {
+  //   // for (int i = 0; i < cards.length; ++i) {
+  //   //   cards[i] = new Card(images[mixedUp[i]], CARDS_COORDINATES[i][0], CARDS_COORDINATES[i][1]);
+  //   // }
 
-      cards[i] = new Card(images[mixedUp[i]], CARDS_COORDINATES[i][0], CARDS_COORDINATES[i][1]);
+  //   //redPieces[0] = new Piece()
 
-
-    }
-    //redPieces[0] = new Piece()
-
-  }
+  // }
 
 
   /**
    * Callback method called each time the user presses a key
    */
 
-  public static void keyPressed() {
+  // public static void keyPressed() {
 
-    if (processing.key == 'n' || processing.key == 'N') {
+  //   if (processing.key == 'n' || processing.key == 'N') {
 
-      startNewGame();
+  //     startNewGame();
 
-    }
+  //   }
 
-  }
+  // }
 
 
   /**
    * Callback method draws continuously this application window display
    */
 
-  public static void draw() {
+  public void draw() {
 
-    processing.background(245, 255, 250); // Mint cream color
+    // processing.background(245, 255, 250); // Mint cream color
 
-    for (int i = 0; i < cards.length; ++i) {
+    for (int i = 0; i < 5; ++i) {
       chosenDeck[i].draw();
     }
     for (int i = 0; i < GRID_COORDINATES.length; ++i) {
       grids[i].draw();
     }
-    for (int i = 0; i < PIECE_COORDINATES.length; ++i) {
+    for (int i = 0; i < 5; ++i) {
       redPieces.get(i).draw();
+      //greenPieces.get(i).draw();
+    }
+    for (int i = 0; i < 5; ++i) {
+      //redPieces.get(i).draw();
       greenPieces.get(i).draw();
     }
 
-    displayMessage(message);
+    //displayMessage(message);
 
   }
 
 
-  /**
-   * Displays a given message to the display window
-   *
-   * @param message to be displayed to the display window
-   */
+  // /**
+  //  * Displays a given message to the display window
+  //  *
+  //  * @param message to be displayed to the display window
+  //  */
 
-  public static void displayMessage(String message) {
+  // public static void displayMessage(String message) {
 
-    processing.fill(0);
+  //   processing.fill(0);
 
-    processing.textSize(20);
+  //   processing.textSize(20);
 
-    processing.text(message, processing.width / 2, 50);
+  //   processing.text(message, processing.width / 2, 50);
 
-    processing.textSize(12);
+  //   processing.textSize(12);
 
-  }
+  // }
 
 
   /**
@@ -263,13 +281,13 @@ public class Driver {
    * @return true if the mouse is over the storage list, false otherwise
    */
 
-  public static boolean isMouseOverCard(Card card) {
+  public boolean isMouseOverCard(Card card) {
 
     boolean mouseOverCard = false;
 
-    if (Math.abs(card.getX() - processing.mouseX) <= (card.getImage().width / 2) &&
+    if (Math.abs(card.getX() - this.mouseX) <= (card.getImage().width / 2) &&
 
-            Math.abs(card.getY() - processing.mouseY) <= (card.getImage().height / 2)) {
+            Math.abs(card.getY() - this.mouseY) <= (card.getImage().height / 2)) {
 
       mouseOverCard = true;
 
@@ -315,7 +333,7 @@ public class Driver {
    * @return true if the mouse is over the storage list, false otherwise
    */
 
-  public static boolean isMouseOverGrid(Grid grid) {
+  public static boolean isMouseOverGrid(GridSquare grid) {
 
     boolean mouseOverGrid = false;
 
@@ -344,10 +362,10 @@ public class Driver {
    * Callback method called each time the user presses the mouse
    */
 
-  public static void mousePressed() {
+  public void mousePressed() {
     Card selectedCard = null;
     Piece selectedPiece = null;
-    Grid selectedGrid = null;
+    GridSquare selectedGrid = null;
     boolean checkValidity = false;
     Coordinate move;
     int getPos = 0;
@@ -372,6 +390,7 @@ public class Driver {
       if (step == 1) {
         for (int i = 0; i < redPieces.size(); i++) {
           if (isMouseOverPiece(redPieces.get(i))) {
+            System.out.println("Red Piece is Clicked");
             selectedPiece = redPieces.get(i);
             // check validity
             selectedPiece.select();
@@ -410,9 +429,16 @@ public class Driver {
             redQueue.remove(0);
             redCards.get(1).setPosition(getPos);
             step = 0;
+            selectedGrid.deselect();
+            selectedCard.deSelect();
+            selectedPiece.deselect();
+            playerTurn='g';
             break;
           }
           step = 0;
+          selectedGrid.deselect();
+          selectedCard.deSelect();
+          selectedPiece.deselect();
         }
       }
     } else { // GREEN TURN
@@ -472,9 +498,16 @@ public class Driver {
             greenQueue.remove(0);
             greenCards.get(1).setPosition(getPos);
             step = 0;
+            selectedGrid.deselect();
+            selectedCard.deSelect();
+            selectedPiece.deselect();
+            playerTurn = 'r';
             break;
           }
           step = 0;
+          selectedGrid.deselect();
+          selectedCard.deSelect();
+          selectedPiece.deselect();
         }
       }
     }
@@ -489,7 +522,7 @@ public class Driver {
    * @return true if card1 and card2 image references are the same, false otherwise
    */
 
-  public static boolean matchingCards(Card card1, Card card2) {
+  public boolean matchingCards(Card card1, Card card2) {
 
     if (card1.getImage().equals(card2.getImage())) {
 
@@ -504,8 +537,8 @@ public class Driver {
 
   public static void main(String[] args) {
 
-    Utility.startApplication();
-
+    // Utility.startApplication();
+    PApplet.main("Driver");
   }
 
 }

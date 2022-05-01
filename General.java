@@ -1,3 +1,6 @@
+import processing.core.PApplet;
+import processing.core.PImage;
+
 public class General extends Piece{
     General(int x_input,int y_input,int color_input,String path, PApplet processing){
         super(x_input, y_input, color_input, path, processing);
