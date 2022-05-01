@@ -133,7 +133,7 @@ public class Driver extends PApplet{
   @Override
   public void setup() {
 
-  
+    playerTurn = 'r';
     // Driver.processing = processing;
 
     images = new PImage[CARD_IMAGES_NAMES.length];
@@ -390,6 +390,7 @@ public class Driver extends PApplet{
       if (step == 1) {
         for (int i = 0; i < redPieces.size(); i++) {
           if (isMouseOverPiece(redPieces.get(i))) {
+            System.out.println("Red Piece is Clicked");
             selectedPiece = redPieces.get(i);
             // check validity
             selectedPiece.select();
@@ -431,6 +432,7 @@ public class Driver extends PApplet{
             selectedGrid.deselect();
             selectedCard.deSelect();
             selectedPiece.deselect();
+            playerTurn='g';
             break;
           }
           step = 0;
@@ -499,6 +501,7 @@ public class Driver extends PApplet{
             selectedGrid.deselect();
             selectedCard.deSelect();
             selectedPiece.deselect();
+            playerTurn = 'r';
             break;
           }
           step = 0;
