@@ -53,7 +53,7 @@ public class Driver extends PApplet{
           "Train.png"};
 
 
-  private static PApplet processing; // PApplet object that represents
+  // private static PApplet processing; // PApplet object that represents
 
   // the graphic display window
 
@@ -72,19 +72,19 @@ public class Driver extends PApplet{
   private static GridSquare[] grids = new GridSquare[49];
   private static PImage[] images; // array of images of the different cards
 
-  private static Card selectedCard1; // First selected card
+  // private static Card selectedCard1; // First selected card
 
-  private static Card selectedCard2; // Second selected card
+  // private static Card selectedCard2; // Second selected card
 
-  private static boolean winner; // boolean evaluated true if the game is won,
+  // private static boolean winner; // boolean evaluated true if the game is won,
 
   // and false otherwise
 
-  private static int matchedCardsCount; // number of cards matched so far
+  // private static int matchedCardsCount; // number of cards matched so far
 
   // in one session of the game
 
-  private static String message; // Displayed message to the display window
+  // private static String message; // Displayed message to the display window
 
   private static Random randGen;
 
@@ -172,6 +172,15 @@ public class Driver extends PApplet{
       chosenDeck[i] = new Card(list.get(i), this);
       chosenDeck[i].setPosition(i);
     }
+
+    for(int i = 0;i<2;i++){
+      redCards.add(chosenDeck[i]);
+    }
+    for(int i = 0;i<2;i++){
+      greenCards.add(chosenDeck[i+2]);
+    }
+
+    redQueue.add(chosenDeck[4]);
 
     for(int i =0 ; i< 49;i++){
       int x = (int)GRID_COORDINATES[i][0];
@@ -284,10 +293,10 @@ public class Driver extends PApplet{
   public boolean isMouseOverCard(Card card) {
 
     boolean mouseOverCard = false;
+    System.out.println(this.mouseX);
+    if (Math.abs(card.getX() + card.getImage().width/2 - this.mouseX) <= (card.getImage().width / 2) &&
 
-    if (Math.abs(card.getX() - this.mouseX) <= (card.getImage().width / 2) &&
-
-            Math.abs(card.getY() - this.mouseY) <= (card.getImage().height / 2)) {
+            Math.abs(card.getY()+card.getImage().height/2  - this.mouseY) <= (card.getImage().height / 2)) {
 
       mouseOverCard = true;
 
@@ -307,13 +316,13 @@ public class Driver extends PApplet{
    * @return true if the mouse is over the storage list, false otherwise
    */
 
-  public static boolean isMouseOverPiece(Piece piece) {
+  public boolean isMouseOverPiece(Piece piece) {
 
     boolean mouseOverPiece = false;
 
-    if (Math.abs(piece.getX() - processing.mouseX) <= (piece.getImage().width / 2) &&
+    if (Math.abs(piece.getX()+(piece.getImage().width / 2) - this.mouseX) <= (piece.getImage().width / 2) &&
 
-            Math.abs(piece.getY() - processing.mouseY) <= (piece.getImage().height / 2)) {
+            Math.abs(piece.getY()+(piece.getImage().height / 2) - this.mouseY) <= (piece.getImage().height / 2)) {
 
       mouseOverPiece = true;
 
@@ -333,13 +342,13 @@ public class Driver extends PApplet{
    * @return true if the mouse is over the storage list, false otherwise
    */
 
-  public static boolean isMouseOverGrid(GridSquare grid) {
+  public boolean isMouseOverGrid(GridSquare grid) {
 
     boolean mouseOverGrid = false;
 
-    if (Math.abs(grid.getX() - processing.mouseX) <= (grid.getImage().width / 2) &&
+    if (Math.abs(grid.getX()+(grid.getImage().width / 2) - this.mouseX) <= (grid.getImage().width / 2) &&
 
-            Math.abs(grid.getY() - processing.mouseY) <= (grid.getImage().height / 2)) {
+            Math.abs(grid.getY()+(grid.getImage().height / 2) - this.mouseY) <= (grid.getImage().height / 2)) {
 
       mouseOverGrid = true;
 
@@ -357,40 +366,42 @@ public class Driver extends PApplet{
  * Figure out isMouseOver(done), mousePressed
  */
 
+Card selectedCard = null;
+Piece selectedPiece = null;
+GridSquare selectedGrid = null;
+boolean checkValidity = false;
+Coordinate move;
+int getPos = 0;
+int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
 
   /**
    * Callback method called each time the user presses the mouse
    */
 
   public void mousePressed() {
-    Card selectedCard = null;
-    Piece selectedPiece = null;
-    GridSquare selectedGrid = null;
-    boolean checkValidity = false;
-    Coordinate move;
-    int getPos = 0;
-    int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
+    System.out.println("selected card "+ selectedCard);
+    System.out.println("selected piece "+ selectedPiece);
 
     if (playerTurn == 'r') {
-      System.out.println("RED TURN");
+      System.out.println("RED TURN " + step);
       if (step == 0) {
-        System.out.println("RED turn to choose card");
-        for (int i = 0; i < cards.length; i++) {
-          if (isMouseOverCard(cards[i])) {
-            selectedCard = cards[i];
+        for (int i = 0; i < redCards.size(); i++) {
+          System.out.println("check");
+          if (isMouseOverCard(redCards.get(i))) {
+            System.out.println("RED card select");
+            selectedCard = redCards.get(i);
             // check validity
             if (redCards.contains(selectedCard)) {
-              cards[i].select();
+              redCards.get(i).select();
               step++;
-            } else {
-              selectedCard = null;
+              break;
             }
-            break;
           }
         }
       }
-      if (step == 1) {
+      else if (step == 1) {
         for (int i = 0; i < redPieces.size(); i++) {
+      
           if (isMouseOverPiece(redPieces.get(i))) {
             System.out.println("Red Piece is Clicked");
             selectedPiece = redPieces.get(i);
@@ -401,7 +412,7 @@ public class Driver extends PApplet{
           }
         }
       }
-      if (step == 2) {
+      else if (step == 2) {
         for (int i = 0; i < grids.length; i++) {
           if (isMouseOverGrid(grids[i])) {
 
@@ -416,50 +427,60 @@ public class Driver extends PApplet{
             coordX = coordXGrid - coordXPiece;
             coordY = coordYGrid - coordYPiece;
             move = new Coordinate(coordX, coordY, true);
-            for (int j = 0; j < selectedCard.canMoveTo.size(); ++i) {
-              if (selectedCard.canMoveTo.get(j).getX() == coordX && selectedCard.canMoveTo.get(j).getY() == coordY) {
+            System.out.println("coordXGrid: " + coordXGrid);
+            System.out.println("coordYGrid: " + coordYGrid);
+            System.out.println("coordXPiece: " + coordXPiece);
+            System.out.println("coordYPiece: " + coordYPiece);
+            System.out.println("coordX: " + coordX);
+            System.out.println("coordY: " + coordY);
+            System.out.println("canmoveto: " + selectedCard.canMoveTo);
+            for (int j = 0; j < selectedCard.canMoveTo.size(); ++j) {
+              System.out.println("");
+              System.out.println("selectedCard.canMoveTo.get(j).getX(): " + selectedCard.canMoveTo.get(j).getX());
+              System.out.println("coordX: " + coordX);
+              System.out.println("selectedCard.canMoveTo.get(j).getY()" + selectedCard.canMoveTo.get(j).getY());
+              System.out.println("coordY:" + coordY);
+;              if (selectedCard.canMoveTo.get(j).getX() == coordX && selectedCard.canMoveTo.get(j).getY() == coordY) {
                 selectedPiece.set_coord(coordXGrid, coordYGrid);
+                // remove from red set, shift to green queue, add red queue card to set
+                getPos = selectedCard.getPosition();
+                redCards.remove(selectedCard);
+                greenQueue.add(selectedCard);
+                selectedCard.setPosition(3);
+                redCards.add(redQueue.get(0));
+                redQueue.remove(0);
+                redCards.get(1).setPosition(getPos);
+                step = 0;
+                selectedGrid.deselect();
+                selectedCard.deSelect();
+                selectedPiece.deselect();
+                playerTurn='g';
+                break;
               }
             }
-
-            // remove from red set, shift to green queue, add red queue card to set
-            getPos = selectedCard.getPosition();
-            redCards.remove(selectedCard);
-            greenQueue.add(selectedCard);
-            selectedCard.setPosition(3);
-            redCards.add(redQueue.get(0));
-            redQueue.remove(0);
-            redCards.get(1).setPosition(getPos);
             step = 0;
             selectedGrid.deselect();
             selectedCard.deSelect();
             selectedPiece.deselect();
-            playerTurn='g';
-            break;
           }
-          step = 0;
-          selectedGrid.deselect();
-          selectedCard.deSelect();
-          selectedPiece.deselect();
+          
         }
       }
     } else { // GREEN TURN
       if (step == 0) {
-        for (int i = 0; i < cards.length; i++) {
-          if (isMouseOverCard(cards[i])) {
-            selectedCard = cards[i];
+        for (int i = 0; i < greenCards.size(); i++) {
+          if (isMouseOverCard(greenCards.get(i))) {
+            selectedCard = greenCards.get(i);
             // check validity
             if (greenCards.contains(selectedCard)) {
-              cards[i].select();
+              greenCards.get(i).select();
               step++;
-            } else {
-              selectedCard = null;
-            }
-            break;
+              break;
+            } 
           }
         }
       }
-      if (step == 1) {
+      else if (step == 1) {
         for (int i = 0; i < greenPieces.size(); i++) {
           if (isMouseOverPiece(greenPieces.get(i))) {
             selectedPiece = greenPieces.get(i);
@@ -470,7 +491,7 @@ public class Driver extends PApplet{
           }
         }
       }
-      if (step == 2) {
+      else if (step == 2) {
         for (int i = 0; i < grids.length; i++) {
           if (isMouseOverGrid(grids[i])) {
 
@@ -484,15 +505,19 @@ public class Driver extends PApplet{
 
             coordX = coordXGrid - coordXPiece;
             coordY = coordYGrid - coordYPiece;
+            System.out.println("coordXGrid: " + coordXGrid);
+            System.out.println("coordYGrid: " + coordYGrid);
+            System.out.println("coordXPiece: " + coordXPiece);
+            System.out.println("coordYPiece: " + coordYPiece);
+            System.out.println("coordX: " + coordX);
+            System.out.println("coordY: " + coordY);
             move = new Coordinate(coordX, coordY, true);
             for (int j = 0; j < selectedCard.canMoveTo.size(); ++i) {
               if (selectedCard.canMoveTo.get(j).getX() == coordX && selectedCard.canMoveTo.get(j).getY() == coordY) {
                 selectedPiece.set_coord(coordXGrid, coordYGrid);
-              }
-            }
+                 // remove from red set, shift to green queue, add red queue card to set
+                getPos = selectedCard.getPosition();
 
-            // remove from red set, shift to green queue, add red queue card to set
-            getPos = selectedCard.getPosition();
             greenCards.remove(selectedCard);
             redQueue.add(selectedCard);
             selectedCard.setPosition(0);
@@ -505,6 +530,10 @@ public class Driver extends PApplet{
             selectedPiece.deselect();
             playerTurn = 'r';
             break;
+              }
+            }
+
+           
           }
           step = 0;
           selectedGrid.deselect();
