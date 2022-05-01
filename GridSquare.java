@@ -1,4 +1,6 @@
 import java.io.File;
+import processing.core.PApplet;
+import processing.core.PImage;
 
 public class GridSquare {
   private Coordinate coord;
@@ -7,7 +9,7 @@ public class GridSquare {
   private PImage image; // piece image
   
   
-  public GridSquare(int x, int y, processing) {
+  public GridSquare(int x, int y, PApplet processing) {
     this.processing = processing;
     coord = new Coordinate(x, y);
     this.selected = false;
@@ -25,5 +27,17 @@ public class GridSquare {
   
   public int getY() {
     return this.coord.getY();
+  }
+
+  public void select(){
+    selected = true;
+  }
+
+  public void deselect(){
+    selected = false;
+  }
+
+  public PImage getImage(){
+      return image;
   }
 }

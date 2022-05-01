@@ -2,7 +2,7 @@ import java.io.File;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Piece implements Clickable {
+public class Piece {
 
     // PApplet stuff
     static private PApplet processing;
@@ -38,17 +38,17 @@ public class Piece implements Clickable {
         selected = true;
     }
 
-    public void unselect(){
+    public void deselect(){
         selected = false;
     }
 
     // name of the piece
     private void set_image(String name) {
-        image = processing.loadImage("assets" + File.separator + "Piece" + name + ".png");
+        image = processing.loadImage("assets" + File.separator + "Pieces" + File.separator + name + ".png");
     }
 
     // call this in the setup method in Driver
-    public static void setProcessing(Driver processing) {
+    public static void setProcessing(PApplet processing) {
         Piece.processing = processing;
     }
 
@@ -63,9 +63,20 @@ public class Piece implements Clickable {
         return coord;
     }
 
+    public int getX(){
+        return coord.getX();
+    }
+    public int getY(){
+        return coord.getY();
+    }
+
     // draw method
     public void draw() {
         this.processing.image(image, coord.getX(), coord.getY());
+    }
+
+    public PImage getImage(){
+        return image;
     }
 
     /**
@@ -83,7 +94,7 @@ public class Piece implements Clickable {
             }
         }
 
-        return false;;
+        return false;
     }
 
 }

@@ -1,6 +1,8 @@
 import java.io.File;
 import java.util.ArrayList;
 import processing.core.PApplet;
+import processing.core.PImage;
+
 
 public class Card {
   
@@ -14,7 +16,7 @@ public class Card {
   int position; // 0 - redQueue[0]; 1 - redCards[0]; 2 - redCards[1]; 3 - greenQueue[0]; 4 - greenCards[0]; 5 - greenCards[1]
   
   static private PApplet processing;
-  PApplet image;
+  PImage image;
   
   public Card(int x, PApplet processing) {
     this.processing = processing;
@@ -292,9 +294,20 @@ public class Card {
     }
     
     // 2. draw this card to the display window by calling processing.image() method
-    Fish.processing.image(this.image, this.thisCardsCoordinate.getX(), this.thisCardsCoordinate.getY());
+    Card.processing.image(this.image, this.thisCardsCoordinate.getX(), this.thisCardsCoordinate.getY());
+  }
+
+  public int getX(){
+      return thisCardsCoordinate.getX();
+  }
+
+  public int getY(){
+      return thisCardsCoordinate.getY();
   }
   
+  public PImage getImage(){
+      return image;
+  }
   
   
 }
