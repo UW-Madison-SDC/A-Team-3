@@ -379,16 +379,16 @@ int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
    */
 
   public void mousePressed() {
-    System.out.println("selected card "+ selectedCard);
-    System.out.println("selected piece "+ selectedPiece);
+    System.out.println("Selected card "+ selectedCard);
+    System.out.println("Selected piece "+ selectedPiece);
 
     if (playerTurn == 'r') {
-      System.out.println("RED TURN " + step);
+      System.out.println("RED TURN: " + step);
       if (step == 0) {
         for (int i = 0; i < redCards.size(); i++) {
-          System.out.println("check");
+          //System.out.println("check");
           if (isMouseOverCard(redCards.get(i))) {
-            System.out.println("RED card select");
+            System.out.println("RED CARD SELECTED");
             selectedCard = redCards.get(i);
             // check validity
             if (redCards.contains(selectedCard)) {
@@ -404,7 +404,7 @@ int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
         for (int i = 0; i < redPieces.size(); i++) {
           
           if (isMouseOverPiece(redPieces.get(i))) {
-            System.out.println("Red Piece is Clicked");
+            System.out.println("RED PIECE IS SELECTED");
             System.out.println(redPieces.get(i).toString());
             selectedPiece = redPieces.get(i);
             // check validity
@@ -417,7 +417,7 @@ int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
       else if (step == 2) {
         for (int i = 0; i < grids.length; i++) {
           if (isMouseOverGrid(grids[i])) {
-
+            System.out.println("RED GRID SELECTED");
             selectedGrid = grids[i];
             selectedGrid.select();
             System.out.println(selectedGrid.toString());
@@ -446,6 +446,7 @@ int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
                 selectedGrid.deselect();
                 selectedCard.deSelect();
                 selectedPiece.deselect();
+                System.out.printf("PLAYER TURN CHANGE: g");
                 playerTurn='g';
                 break;
               }
@@ -455,8 +456,10 @@ int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
             selectedCard.deSelect();
             selectedPiece.deselect();
           }
-          
+          System.out.println("IS PLAYER TURN STILL SAME: " + playerTurn);
+          break;
         }
+        System.out.println("IS PLAYER TURN STILL SAME AT THE END: " + playerTurn);
       }
     } else { // GREEN TURN
       if (step == 0) {
