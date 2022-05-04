@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.Random;
 
 
-public class Driver extends PApplet{
+public class Driver extends PApplet {
 
   // Congratulations message
 
@@ -135,7 +135,7 @@ public class Driver extends PApplet{
 
     playerTurn = 'r';
     // Driver.processing = processing;
- 
+
     images = new PImage[CARD_IMAGES_NAMES.length];
     randGen = new Random();
 
@@ -150,11 +150,11 @@ public class Driver extends PApplet{
     }
 
     for (int i = 0; i < 4; ++i) {
-      greenRecruits[i] = new Piece(PIECE_COORDINATES[i+4][0], PIECE_COORDINATES[i+4][1], 0, "GreenRecruit", this);
+      greenRecruits[i] = new Piece(PIECE_COORDINATES[i + 4][0], PIECE_COORDINATES[i + 4][1], 0, "GreenRecruit", this);
       greenPieces.add(greenRecruits[i]);
     }
 
- 
+
     for (int i = 0; i < 15; ++i) {
 
 //      images[i] = processing.loadImage("images" + File.separator + CARD_IMAGES_NAMES[i]);
@@ -173,18 +173,18 @@ public class Driver extends PApplet{
       chosenDeck[i].setPosition(i);
     }
 
-    for(int i = 0;i<2;i++){
+    for (int i = 0; i < 2; i++) {
       redCards.add(chosenDeck[i]);
     }
-    for(int i = 0;i<2;i++){
-      greenCards.add(chosenDeck[i+2]);
+    for (int i = 0; i < 2; i++) {
+      greenCards.add(chosenDeck[i + 2]);
     }
 
     redQueue.add(chosenDeck[4]);
 
-    for(int i =0 ; i< 49;i++){
-      int x = (int)GRID_COORDINATES[i][0];
-      int y = (int)GRID_COORDINATES[i][1];
+    for (int i = 0; i < 49; i++) {
+      int x = (int) GRID_COORDINATES[i][0];
+      int y = (int) GRID_COORDINATES[i][1];
       grids[i] = new GridSquare(x, y, this);
     }
 
@@ -294,9 +294,9 @@ public class Driver extends PApplet{
 
     boolean mouseOverCard = false;
     System.out.println(this.mouseX);
-    if (Math.abs(card.getX() + card.getImage().width/2 - this.mouseX) <= (card.getImage().width / 2) &&
+    if (Math.abs(card.getX() + card.getImage().width / 2 - this.mouseX) <= (card.getImage().width / 2) &&
 
-            Math.abs(card.getY()+card.getImage().height/2  - this.mouseY) <= (card.getImage().height / 2)) {
+            Math.abs(card.getY() + card.getImage().height / 2 - this.mouseY) <= (card.getImage().height / 2)) {
 
       mouseOverCard = true;
 
@@ -320,9 +320,9 @@ public class Driver extends PApplet{
 
     boolean mouseOverPiece = false;
 
-    if (Math.abs(piece.getX()+(piece.getImage().width / 2) - this.mouseX) <= (piece.getImage().width / 2) &&
+    if (Math.abs(piece.getX() + (piece.getImage().width / 2) - this.mouseX) <= (piece.getImage().width / 2) &&
 
-            Math.abs(piece.getY()+(piece.getImage().height / 2) - this.mouseY) <= (piece.getImage().height / 2)) {
+            Math.abs(piece.getY() + (piece.getImage().height / 2) - this.mouseY) <= (piece.getImage().height / 2)) {
 
       mouseOverPiece = true;
 
@@ -346,9 +346,9 @@ public class Driver extends PApplet{
 
     boolean mouseOverGrid = false;
 
-    if (Math.abs(grid.getX()+(grid.getImage().width / 2) - this.mouseX) <= (grid.getImage().width / 2) &&
+    if (Math.abs(grid.getX() + (grid.getImage().width / 2) - this.mouseX) <= (grid.getImage().width / 2) &&
 
-            Math.abs(grid.getY()+(grid.getImage().height / 2) - this.mouseY) <= (grid.getImage().height / 2)) {
+            Math.abs(grid.getY() + (grid.getImage().height / 2) - this.mouseY) <= (grid.getImage().height / 2)) {
 
       mouseOverGrid = true;
 
@@ -362,25 +362,25 @@ public class Driver extends PApplet{
 
   }
 
-/**
- * Figure out isMouseOver(done), mousePressed
- */
+  /**
+   * Figure out isMouseOver(done), mousePressed
+   */
 
-Card selectedCard = null;
-Piece selectedPiece = null;
-GridSquare selectedGrid = null;
-boolean checkValidity = false;
-Coordinate move;
-int getPos = 0;
-int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
+  Card selectedCard = null;
+  Piece selectedPiece = null;
+  GridSquare selectedGrid = null;
+  boolean checkValidity = false;
+  Coordinate move;
+  int getPos = 0;
+  int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
 
   /**
    * Callback method called each time the user presses the mouse
    */
 
   public void mousePressed() {
-    System.out.println("Selected card "+ selectedCard);
-    System.out.println("Selected piece "+ selectedPiece);
+    //System.out.println("Selected card " + selectedCard);
+    //System.out.println("Selected piece " + selectedPiece);
 
     if (playerTurn == 'r') {
       System.out.println("RED TURN: " + step);
@@ -399,10 +399,9 @@ int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
             }
           }
         }
-      }
-      else if (step == 1) {
+      } else if (step == 1) {
         for (int i = 0; i < redPieces.size(); i++) {
-          
+
           if (isMouseOverPiece(redPieces.get(i))) {
             System.out.println("RED PIECE IS SELECTED");
             System.out.println(redPieces.get(i).toString());
@@ -413,8 +412,7 @@ int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
             break;
           }
         }
-      }
-      else if (step == 2) {
+      } else if (step == 2) {
         for (int i = 0; i < grids.length; i++) {
           if (isMouseOverGrid(grids[i])) {
             System.out.println("RED GRID SELECTED");
@@ -431,8 +429,9 @@ int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
             move = new Coordinate(coordX, coordY, true);
 
             for (int j = 0; j < selectedCard.canMoveTo.size(); ++j) {
-      
-;              if (selectedCard.canMoveTo.get(j).getX() == coordX && selectedCard.canMoveTo.get(j).getY() == coordY) {
+
+              if (selectedCard.canMoveTo.get(j).getX() == coordX && selectedCard.canMoveTo.get(j).getY() == coordY) {
+                System.out.println("Is this RED set coord ever executed?");
                 selectedPiece.set_coord(coordXGrid, coordYGrid);
                 // remove from red set, shift to green queue, add red queue card to set
                 getPos = selectedCard.getPosition();
@@ -446,8 +445,8 @@ int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
                 selectedGrid.deselect();
                 selectedCard.deSelect();
                 selectedPiece.deselect();
-                System.out.printf("PLAYER TURN CHANGE: g");
-                playerTurn='g';
+                System.out.println("PLAYER TURN CHANGE: g");
+                playerTurn = 'g';
                 break;
               }
             }
@@ -457,27 +456,34 @@ int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
             selectedPiece.deselect();
           }
           System.out.println("IS PLAYER TURN STILL SAME: " + playerTurn);
-          break;
+          if (playerTurn == 'g')
+            break;
         }
         System.out.println("IS PLAYER TURN STILL SAME AT THE END: " + playerTurn);
       }
-    } else { // GREEN TURN
+    }
+
+    else { // GREEN TURN
+      System.out.println("GREEN TURN: " + step);
       if (step == 0) {
+        System.out.println("is if green step executed");
         for (int i = 0; i < greenCards.size(); i++) {
+          System.out.println("is step 0 for loop executed");
           if (isMouseOverCard(greenCards.get(i))) {
+            System.out.println("GREEN CARD SELECTED");
             selectedCard = greenCards.get(i);
             // check validity
             if (greenCards.contains(selectedCard)) {
               greenCards.get(i).select();
               step++;
               break;
-            } 
+            }
           }
         }
-      }
-      else if (step == 1) {
+      } else if (step == 1) {
         for (int i = 0; i < greenPieces.size(); i++) {
           if (isMouseOverPiece(greenPieces.get(i))) {
+            System.out.println("GREEN PIECE IS SELECTED");
             selectedPiece = greenPieces.get(i);
             // check validity
             selectedPiece.select();
@@ -485,11 +491,10 @@ int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
             break;
           }
         }
-      }
-      else if (step == 2) {
+      } else if (step == 2) {
         for (int i = 0; i < grids.length; i++) {
           if (isMouseOverGrid(grids[i])) {
-
+            System.out.println("GREEN GRID IS SELECTED");
             selectedGrid = grids[i];
             selectedGrid.select();
 
@@ -500,65 +505,69 @@ int coordXGrid, coordYGrid, coordXPiece, coordYPiece, coordX, coordY;
 
             coordX = coordXGrid - coordXPiece;
             coordY = coordYGrid - coordYPiece;
-            System.out.println("coordXGrid: " + coordXGrid);
-            System.out.println("coordYGrid: " + coordYGrid);
-            System.out.println("coordXPiece: " + coordXPiece);
-            System.out.println("coordYPiece: " + coordYPiece);
-            System.out.println("coordX: " + coordX);
-            System.out.println("coordY: " + coordY);
+//            System.out.println("coordXGrid: " + coordXGrid);
+//            System.out.println("coordYGrid: " + coordYGrid);
+//            System.out.println("coordXPiece: " + coordXPiece);
+//            System.out.println("coordYPiece: " + coordYPiece);
+//            System.out.println("coordX: " + coordX);
+//            System.out.println("coordY: " + coordY);
             move = new Coordinate(coordX, coordY, true);
             for (int j = 0; j < selectedCard.canMoveTo.size(); ++i) {
               if (selectedCard.canMoveTo.get(j).getX() == coordX && selectedCard.canMoveTo.get(j).getY() == coordY) {
+                System.out.println("Is this GREEN set coord ever executed?");
                 selectedPiece.set_coord(coordXGrid, coordYGrid);
-                 // remove from red set, shift to green queue, add red queue card to set
+                // remove from red set, shift to green queue, add red queue card to set
                 getPos = selectedCard.getPosition();
 
-            greenCards.remove(selectedCard);
-            redQueue.add(selectedCard);
-            selectedCard.setPosition(0);
-            greenCards.add(greenQueue.get(0));
-            greenQueue.remove(0);
-            greenCards.get(1).setPosition(getPos);
+                greenCards.remove(selectedCard);
+                redQueue.add(selectedCard);
+                selectedCard.setPosition(0);
+                greenCards.add(greenQueue.get(0));
+                greenQueue.remove(0);
+                greenCards.get(1).setPosition(getPos);
+                step = 0;
+                selectedGrid.deselect();
+                selectedCard.deSelect();
+                selectedPiece.deselect();
+                System.out.println("PLAYER TURN CHANGE: r");
+                playerTurn = 'r';
+                break;
+              }
+            }
             step = 0;
             selectedGrid.deselect();
             selectedCard.deSelect();
             selectedPiece.deselect();
-            playerTurn = 'r';
-            break;
-              }
-            }
-
-           
           }
-          step = 0;
-          selectedGrid.deselect();
-          selectedCard.deSelect();
-          selectedPiece.deselect();
+          System.out.println("IS PLAYER TURN STILL SAME: " + playerTurn);
+          if (playerTurn == 'r')
+            break;
         }
       }
+      System.out.println("IS PLAYER TURN STILL SAME AT THE END: " + playerTurn);
     }
   }
 
 
-  /**
-   * Checks whether two cards match or not
-   *
-   * @param card1 reference to the first card
-   * @param card2 reference to the second card
-   * @return true if card1 and card2 image references are the same, false otherwise
-   */
-
-  public boolean matchingCards(Card card1, Card card2) {
-
-    if (card1.getImage().equals(card2.getImage())) {
-
-      return true;
-
-    } else
-
-      return false;
-
-  }
+//  /**
+//   * Checks whether two cards match or not
+//   *
+//   * @param card1 reference to the first card
+//   * @param card2 reference to the second card
+//   * @return true if card1 and card2 image references are the same, false otherwise
+//   */
+//
+//  public boolean matchingCards(Card card1, Card card2) {
+//
+//    if (card1.getImage().equals(card2.getImage())) {
+//
+//      return true;
+//
+//    } else
+//
+//      return false;
+//
+//  }
 
 
   public static void main(String[] args) {
