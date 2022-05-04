@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.Random;
 
 
-public class Driver extends PApplet {
+public class Onitama extends PApplet {
 
   // Congratulations message
 
@@ -84,7 +84,7 @@ public class Driver extends PApplet {
 
   // in one session of the game
 
-  // private static String message; // Displayed message to the display window
+  private static String message; // Displayed message to the display window
 
   private static Random randGen;
 
@@ -175,12 +175,17 @@ public class Driver extends PApplet {
 
     for (int i = 0; i < 2; i++) {
       redCards.add(chosenDeck[i]);
+      System.out.println("red");
+      System.out.println(chosenDeck[i]);
+      System.out.println(chosenDeck[i].getPosition());
     }
-    for (int i = 0; i < 2; i++) {
-      greenCards.add(chosenDeck[i + 2]);
+    redQueue.add(chosenDeck[2]);
+    for (int i = 3; i < 5; i++) {
+      greenCards.add(chosenDeck[i]);
+      System.out.println("green");
+      System.out.println(chosenDeck[i]);
+      System.out.println(chosenDeck[i].getPosition());
     }
-
-    redQueue.add(chosenDeck[4]);
 
     for (int i = 0; i < 49; i++) {
       int x = (int) GRID_COORDINATES[i][0];
@@ -243,7 +248,8 @@ public class Driver extends PApplet {
 
   public void draw() {
 
-    // processing.background(245, 255, 250); // Mint cream color
+    this.background(100, 100, 100); // Mint cream color
+    //displayMessage("PLAYER TURN: RED");
 
     for (int i = 0; i < 5; ++i) {
       chosenDeck[i].draw();
@@ -265,23 +271,24 @@ public class Driver extends PApplet {
   }
 
 
-  // /**
-  //  * Displays a given message to the display window
-  //  *
-  //  * @param message to be displayed to the display window
-  //  */
+   /**
+    * Displays a given message to the display window
+    *
+    * @param message to be displayed to the display window
+    */
 
-  // public static void displayMessage(String message) {
+   public void displayMessage(String message) {
 
-  //   processing.fill(0);
+     this.fill(0);
 
-  //   processing.textSize(20);
+     this.textSize(20);
 
-  //   processing.text(message, processing.width / 2, 50);
+     this.text(message, this.width / 2, 50);
 
-  //   processing.textSize(12);
+     this.textSize(12);
+     //delay(5000);
 
-  // }
+   }
 
 
   /**
@@ -383,6 +390,9 @@ public class Driver extends PApplet {
     //System.out.println("Selected piece " + selectedPiece);
 
     if (playerTurn == 'r') {
+      //displayMessage("");
+      displayMessage("PLAYER TURN: RED");
+      //message = "PLAYER TURN: RED";
       System.out.println("RED TURN: " + step);
       if (step == 0) {
         for (int i = 0; i < redCards.size(); i++) {
@@ -429,15 +439,23 @@ public class Driver extends PApplet {
             move = new Coordinate(coordX, coordY, true);
 
             for (int j = 0; j < selectedCard.canMoveTo.size(); ++j) {
-
+              System.out.println("RED");
+              System.out.println(selectedCard.canMoveTo.size());
+              System.out.println("coordX: " + coordX);
+              System.out.println("coordY: " + coordY);
+              System.out.println("Selected Card: " + selectedCard);
+              System.out.println("canMoveToCoordX: " + selectedCard.canMoveTo.get(j).getX());
+              System.out.println("canMoveToCoordY: " + selectedCard.canMoveTo.get(j).getY());
+              System.out.println("does it reach here selected card for loop " + j);
               if (selectedCard.canMoveTo.get(j).getX() == coordX && selectedCard.canMoveTo.get(j).getY() == coordY) {
                 System.out.println("Is this RED set coord ever executed?");
                 selectedPiece.set_coord(coordXGrid, coordYGrid);
                 // remove from red set, shift to green queue, add red queue card to set
                 getPos = selectedCard.getPosition();
+                // get pos of selected card, remove
                 redCards.remove(selectedCard);
                 greenQueue.add(selectedCard);
-                selectedCard.setPosition(3);
+                selectedCard.setPosition(5);
                 redCards.add(redQueue.get(0));
                 redQueue.remove(0);
                 redCards.get(1).setPosition(getPos);
@@ -446,6 +464,11 @@ public class Driver extends PApplet {
                 selectedCard.deSelect();
                 selectedPiece.deselect();
                 System.out.println("PLAYER TURN CHANGE: g");
+                //displayMessage("");
+                //delay(5000);
+                //displayMessage("PLAYER TURN: GREEN");
+                //delay(5000);
+               // message = "PLAYER TURN: GREEN";
                 playerTurn = 'g';
                 break;
               }
@@ -464,6 +487,9 @@ public class Driver extends PApplet {
     }
 
     else { // GREEN TURN
+      //displayMessage("");
+      //
+      //message = "PLAYER TURN: GREEN";
       System.out.println("GREEN TURN: " + step);
       if (step == 0) {
         System.out.println("is if green step executed");
@@ -497,12 +523,12 @@ public class Driver extends PApplet {
             System.out.println("GREEN GRID IS SELECTED");
             selectedGrid = grids[i];
             selectedGrid.select();
-
+            System.out.println("does it reach here 1");
             coordXGrid = selectedGrid.getX();
             coordYGrid = selectedGrid.getY();
             coordXPiece = selectedPiece.getX();
             coordYPiece = selectedPiece.getY();
-
+            System.out.println("does it reach here 2");
             coordX = coordXGrid - coordXPiece;
             coordY = coordYGrid - coordYPiece;
 //            System.out.println("coordXGrid: " + coordXGrid);
@@ -512,7 +538,16 @@ public class Driver extends PApplet {
 //            System.out.println("coordX: " + coordX);
 //            System.out.println("coordY: " + coordY);
             move = new Coordinate(coordX, coordY, true);
-            for (int j = 0; j < selectedCard.canMoveTo.size(); ++i) {
+            System.out.println("does it reach here 3");
+            for (int j = 0; j < selectedCard.canMoveTo.size(); ++j) {
+              System.out.println("GREEN");
+              System.out.println(selectedCard.canMoveTo.size());
+              System.out.println("coordX: " + coordX);
+              System.out.println("coordY: " + coordY);
+              System.out.println("Selected Card: " + selectedCard);
+              System.out.println("canMoveToCoordX: " + selectedCard.canMoveTo.get(j).getX());
+              System.out.println("canMoveToCoordY: " + selectedCard.canMoveTo.get(j).getY());
+              System.out.println("does it reach here selected card for loop " + j);
               if (selectedCard.canMoveTo.get(j).getX() == coordX && selectedCard.canMoveTo.get(j).getY() == coordY) {
                 System.out.println("Is this GREEN set coord ever executed?");
                 selectedPiece.set_coord(coordXGrid, coordYGrid);
@@ -521,7 +556,7 @@ public class Driver extends PApplet {
 
                 greenCards.remove(selectedCard);
                 redQueue.add(selectedCard);
-                selectedCard.setPosition(0);
+                selectedCard.setPosition(2);
                 greenCards.add(greenQueue.get(0));
                 greenQueue.remove(0);
                 greenCards.get(1).setPosition(getPos);
@@ -530,6 +565,12 @@ public class Driver extends PApplet {
                 selectedCard.deSelect();
                 selectedPiece.deselect();
                 System.out.println("PLAYER TURN CHANGE: r");
+                //displayMessage("");
+                //delay(100);
+                //delay(5000);
+                //displayMessage("PLAYER TURN: RED");
+                //delay(5000);
+               // message = "PLAYER TURN: RED";
                 playerTurn = 'r';
                 break;
               }
@@ -573,7 +614,7 @@ public class Driver extends PApplet {
   public static void main(String[] args) {
 
     // Utility.startApplication();
-    PApplet.main("Driver");
+    PApplet.main("Onitama");
   }
 
 }
