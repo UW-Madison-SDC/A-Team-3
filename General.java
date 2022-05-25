@@ -1,20 +1,22 @@
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class General extends Piece{
-    General(int x_input,int y_input,int color_input,String path, PApplet processing){
+public class General extends Piece {
+    General(int x_input, int y_input, int color_input, String path, PApplet processing) {
         super(x_input, y_input, color_input, path, processing);
     }
 
     // method that checks General piece is in the opposite middle position
-    public boolean check(){
-        if(color == 0){ // 0 is for General
-            if(coord.equals(yellow_win)){
+    public boolean check() {
+        if (color == 0) { // 0 is for General
+            if (Utility.converter_game(coord.getX()) == green_win.getX()
+                    && Utility.converter_game(coord.getY()) == green_win.getY()) {
                 return true;
             }
         }
-        if(color == 1){ // 1 is for red
-            if(coord.equals(red_win)){
+        if (color == 1) { // 1 is for red
+            if (Utility.converter_game(coord.getX()) == red_win.getX()
+                    && Utility.converter_game(coord.getY()) == red_win.getY()) {
                 return true;
             }
         }
@@ -22,7 +24,8 @@ public class General extends Piece{
     }
 
     @Override
-    public String toString(){
-        return "General piece at : "+ coord.toString();
+    public String toString() {
+        return "General piece at : " + coord.toString();
     }
 }
+// check

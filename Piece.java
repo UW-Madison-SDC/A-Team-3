@@ -17,10 +17,10 @@ public class Piece {
 
     private boolean selected; 
 
-    protected final Coordinate yellow_win = new Coordinate(-4,0);
-    protected final Coordinate red_win = new Coordinate(4,0);
+    protected final Coordinate green_win = new Coordinate(0,3);
+    protected final Coordinate red_win = new Coordinate(6,3);
     /**
-     * constructor
+     * constructor  
      * 
      * @param x_input     initial x coord
      * @param y_input     initial y coord
