@@ -54,7 +54,7 @@ public class Card {
     }
     
     if(x == 2) {
-      this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Attack Helicopter.png");
+      this.image = processing.loadImage("assets" + File.separator + "Cards" + File.separator + "Cargo Plane.png");
       this.title = "Cargo Plane";
       
       this.canMoveTo.add(new Coordinate(57,-57));

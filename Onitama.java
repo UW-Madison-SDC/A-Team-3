@@ -477,8 +477,9 @@ public class Onitama extends PApplet {
             selectedGrid.deselect();
             selectedCard.deSelect();
             selectedPiece.deselect();
+            System.out.println("IS PLAYER TURN STILL SAME: " + playerTurn);
           }
-          System.out.println("IS PLAYER TURN STILL SAME: " + playerTurn);
+          
           if (playerTurn == 'g')
             break;
         }
@@ -496,7 +497,7 @@ public class Onitama extends PApplet {
         for (int i = 0; i < greenCards.size(); i++) {
           System.out.println("is step 0 for loop executed");
           if (isMouseOverCard(greenCards.get(i))) {
-            System.out.println("GREEN CARD SELECTED");
+            System.out.println("GREEN CARD SELECTED"+ greenCards.get(i).toString());
             selectedCard = greenCards.get(i);
             // check validity
             if (greenCards.contains(selectedCard)) {
@@ -579,8 +580,9 @@ public class Onitama extends PApplet {
             selectedGrid.deselect();
             selectedCard.deSelect();
             selectedPiece.deselect();
+            System.out.println("IS PLAYER TURN STILL SAME: " + playerTurn);
           }
-          System.out.println("IS PLAYER TURN STILL SAME: " + playerTurn);
+          
           if (playerTurn == 'r')
             break;
         }
