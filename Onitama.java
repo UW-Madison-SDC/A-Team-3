@@ -612,7 +612,21 @@ public class Onitama extends PApplet {
 //
 //  }
 
-
+  private static void kill(Coordinate c){
+    if(playerTurn == 'r'){
+      for(Piece p: greenPieces){
+        if(p.coord.equals(c)){
+          greenPieces.remove(p);
+        }
+      }
+    }else{
+      for(Piece p: redPieces){
+        if(p.coord.equals(c)){
+          greenPieces.remove(p);
+        }
+      }
+    }
+  }
   public static void main(String[] args) {
 
     // Utility.startApplication();
