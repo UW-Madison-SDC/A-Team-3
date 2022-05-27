@@ -113,6 +113,14 @@ public class Piece {
         return false;
     }
 
+    public boolean check(){
+        return false;
+    }
+
+    public boolean is_general(){
+        return false;
+    }
+
     public String toString(){
         return "normal piece at "+coord.toString();
     }

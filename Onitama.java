@@ -134,6 +134,7 @@ public class Onitama extends PApplet {
   public void setup() {
 
     playerTurn = 'r';
+    step = 0;
     // Driver.processing = processing;
 
     images = new PImage[CARD_IMAGES_NAMES.length];
@@ -257,11 +258,11 @@ public class Onitama extends PApplet {
     for (int i = 0; i < GRID_COORDINATES.length; ++i) {
       grids[i].draw();
     }
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < redPieces.size(); ++i) {
       redPieces.get(i).draw();
       //greenPieces.get(i).draw();
     }
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < greenPieces.size(); ++i) {
       //redPieces.get(i).draw();
       greenPieces.get(i).draw();
     }
@@ -388,7 +389,9 @@ public class Onitama extends PApplet {
   public void mousePressed() {
     //System.out.println("Selected card " + selectedCard);
     //System.out.println("Selected piece " + selectedPiece);
-
+    if(step == 10){
+      setup();
+    }
     if (playerTurn == 'r') {
       //displayMessage("");
       displayMessage("PLAYER TURN: RED");
@@ -425,10 +428,14 @@ public class Onitama extends PApplet {
       } else if (step == 2) {
         for (int i = 0; i < grids.length; i++) {
           if (isMouseOverGrid(grids[i])) {
+            
             System.out.println("RED GRID SELECTED");
+
             selectedGrid = grids[i];
             selectedGrid.select();
+
             System.out.println(selectedGrid.toString());
+
             coordXGrid = selectedGrid.getX();
             coordYGrid = selectedGrid.getY();
             coordXPiece = selectedPiece.getX();
@@ -437,6 +444,8 @@ public class Onitama extends PApplet {
             coordX = coordXGrid - coordXPiece;
             coordY = coordYGrid - coordYPiece;
             move = new Coordinate(coordX, coordY, true);
+
+            boolean flag = false;
 
             for (int j = 0; j < selectedCard.canMoveTo.size(); ++j) {
               System.out.println("RED");
@@ -469,15 +478,18 @@ public class Onitama extends PApplet {
                 //displayMessage("PLAYER TURN: GREEN");
                 //delay(5000);
                // message = "PLAYER TURN: GREEN";
+                kill(coordXGrid, coordYGrid, selectedPiece);
                 playerTurn = 'g';
                 break;
               }
             }
+
             step = 0;
             selectedGrid.deselect();
             selectedCard.deSelect();
             selectedPiece.deselect();
             System.out.println("IS PLAYER TURN STILL SAME: " + playerTurn);
+
           }
           
           if (playerTurn == 'g')
@@ -485,9 +497,7 @@ public class Onitama extends PApplet {
         }
         System.out.println("IS PLAYER TURN STILL SAME AT THE END: " + playerTurn);
       }
-    }
-
-    else { // GREEN TURN
+    }else { // GREEN TURN
       //displayMessage("");
       //
       //message = "PLAYER TURN: GREEN";
@@ -572,6 +582,8 @@ public class Onitama extends PApplet {
                 //displayMessage("PLAYER TURN: RED");
                 //delay(5000);
                // message = "PLAYER TURN: RED";
+                kill(coordXGrid, coordYGrid, selectedPiece);
+
                 playerTurn = 'r';
                 break;
               }
@@ -590,8 +602,6 @@ public class Onitama extends PApplet {
       System.out.println("IS PLAYER TURN STILL SAME AT THE END: " + playerTurn);
     }
   }
-
-
 //  /**
 //   * Checks whether two cards match or not
 //   *
@@ -612,20 +622,47 @@ public class Onitama extends PApplet {
 //
 //  }
 
-  private static void kill(Coordinate c){
+  
+
+  private static void kill(int x, int y, Piece current){
+    Coordinate c = new Coordinate(x,y);
     if(playerTurn == 'r'){
-      for(Piece p: greenPieces){
-        if(p.coord.equals(c)){
-          greenPieces.remove(p);
+      for(int i=0;i<greenPieces.size();i++){
+        if(greenPieces.get(i).get_coord().equals(c)){
+          Piece tmp = greenPieces.get(i);
+          greenPieces.remove(i);
+          if(tmp.is_general()==true){
+            end_game("Red win");
+          }
+        }
+      }
+      if(current.is_general()==true){
+        if(current.check()==true){
+          end_game("Red win");
         }
       }
     }else{
-      for(Piece p: redPieces){
-        if(p.coord.equals(c)){
-          greenPieces.remove(p);
+      for(int i=0;i<redPieces.size();i++){
+        if(redPieces.get(i).get_coord().equals(c)){
+          Piece tmp = redPieces.get(i);
+          redPieces.remove(i);
+          if(tmp.is_general()==true){
+            end_game("Green win");
+          }
+        }
+      }
+      if(current.is_general()==true){
+        if(current.check()==true){
+          end_game("Green win");
         }
       }
     }
+  }
+
+
+  private static void end_game(String s){
+    System.out.println("game end ::"+s);
+    step = 10;
   }
   public static void main(String[] args) {
 
