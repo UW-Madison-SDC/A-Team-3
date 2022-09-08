@@ -6,13 +6,13 @@
 | ---------- | ----------------------------------------------- |
 | Maintainer | [Fahim Islam](https://github.com/FahimIslam731) |
 | Member     | [amohanty03](https://github.com/amohanty03)     |
-| Member     | [DaCooGa](https://github.com/DaCooGa)           |
+| Member     | [Aidan Yim](https://github.com/DaCooGa)         |
 | Member     | [nickroh](https://github.com/nickroh)           |
 | Member     | [Saanvi Malhotra](https://github.com/malhotrasaanvi)|
 
 ### Project
 
-* ONITAMA GAME
+* Card Chess GAME
 
 
 
@@ -27,7 +27,7 @@
 
 #### About the game
 
-* Red vs Yellow
+* Two players compete to take the opposing General Piece. The movement of their pieces involves a complex system of 5 randomly selected cards. Each player has two cards at their disposal at all times to move a piece. The fifth card does not belong to either player yet. After using a card to move a piece, the card used is then swapped with the fifth card not belonging to either player, hence rotating the cards used between players over the course of the game.
 
 
 #### NOTES
