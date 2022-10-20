@@ -5,7 +5,7 @@
 | Role       | Name                                            |
 | ---------- | ----------------------------------------------- |
 | Maintainer | [Fahim Islam](https://github.com/FahimIslam731) |
-| Member     | [amohanty03](https://github.com/amohanty03)     |
+| Member     | [Ankit Mohanty](https://github.com/amohanty03)  |
 | Member     | [Aidan Yim](https://github.com/DaCooGa)         |
 | Member     | [nickroh](https://github.com/nickroh)           |
 | Member     | [Saanvi Malhotra](https://github.com/malhotrasaanvi)|
