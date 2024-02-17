@@ -6,7 +6,7 @@
 | ---------- | ----------------------------------------------- |
 | Maintainer | [Fahim Islam](https://github.com/FahimIslam731) |
 | Member     | [Ankit Mohanty](https://github.com/amohanty03)  |
-| Member     | [Aidan Yim](https://github.com/DaCooGa)         |
+| Member     | [Aidan Yim](https://github.com/Aidan-Yim)         |
 | Member     | [nickroh](https://github.com/nickroh)           |
 | Member     | [Saanvi Malhotra](https://github.com/malhotrasaanvi)|
 
